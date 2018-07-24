@@ -1,0 +1,25 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        user:
+            entity:
+                class: App\Entity\User\User
+                property: username
+    encoders:
+        App\Entity\User\User:
+            algorithm: bcrypt
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            form_login:
+                login_path: login_user
+                check_path: login_user
+
+
+    access_control:
+    # - { path: ^/admin, roles: ROLE_ADMIN }
+    # - { path: ^/profile, roles: ROLE_USER }
